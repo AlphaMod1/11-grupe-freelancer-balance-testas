@@ -3,9 +3,10 @@ renderTable();
 function renderTable() {
     const table_cont = document.querySelector('.table-content');
     let HTML = '';
+    let summaryDate = [0,0,0,0];
+    
 
     for (let i = 0; i < account.length; i-=-1) {
-
         let month = account[i].month;
         let income = account[i].income;
         let expense = account[i].expense;
@@ -26,6 +27,7 @@ function renderTable() {
         </div>`;
     }
     table_cont.innerHTML = HTML;
+    renderSummary(summaryDate);
 }
 
 function updateFooter(income, expense, balance) {
@@ -43,5 +45,11 @@ function updateFooter(income, expense, balance) {
         cells_data[i] = parseFloat(cells[i].innerHTML);
         cells_data[i] += newValue[i];
         cells[i].innerHTML = cells_data[i] + ' Eur';
+    }
+}
+
+function renderSummary(summary){
+    for(let i = 0; i < 4; i+=true){
+        document.querySelector('#summary-'+i).innerHTML = months[summary[i]];
     }
 }
